@@ -1,0 +1,78 @@
+Microsoft (R) Macro Assembler Version 14.34.31935.0	    03/24/24 23:17:03
+integerexpressioncalculation.asm			     Page 1 - 1
+
+
+				; 
+				; CSCI268 - Asgn 1 - Integer Expression Calculation
+				;
+				; Miranda Morris
+				; 3/20/2024
+				; This code is meant to perform this expression A = (A - B) + (C - D). 
+				; The integer values of A, B, C, & D are assigned to the EAX, EBX, ECX, 
+				; & EDX registers then the above expression is performed and the resulting
+				; value is stored in the eax register.
+
+				.586
+				.model flat, stdcall
+				option casemap : none; case-sensitive
+
+				ExitProcess proto,dwExitCode:dword
+
+ 00000000			.data ; showing this is the data area 
+
+ 00000000			.code ; showing this is the code area
+ 00000000			main proc ; starts the main procedure
+ 00000000  B8 00000008			mov eax, 8 ; stores the integer value of 1 in the register eax which makes A = 8
+ 00000005  BB 00000007			mov ebx, 7 ; stores the integer value of 7 in the register ebx which makes B = 7
+ 0000000A  B9 00000007			mov ecx, 7 ; stores the integer value of 7 in the register ecx which makes C = 7
+ 0000000F  BA 00000001			mov edx, 1 ; stores the integer value of 1 in the register edx which makes D = 1
+
+ 00000014  2B C3			sub eax, ebx ; subtracts the integer value of (A = 8) - (B = 7) making the new value of register eax = 1
+ 00000016  2B CA			sub ecx, edx ; subtracts the integer value of (C = 7) - (D = 1) making the new value of register ecx = 6
+ 00000018  03 C1			add eax, ecx ; adds the register values of (A - B = 1) and (C - D = 6) making the new value register eax = 7
+
+					invoke ExitProcess,0 ; calls a Windows service (also known as a function named ExitProcess that halts the program and returns)
+ 0000001A  6A 00	   *	    push   +000000000h
+ 0000001C  E8 00000000 E   *	    call   ExitProcess
+ 00000021			main endp  ; is the ending marker of the main procedure.
+
+				end main
+Microsoft (R) Macro Assembler Version 14.34.31935.0	    03/24/24 23:17:03
+integerexpressioncalculation.asm			     Symbols 2 - 1
+
+
+
+
+Segments and Groups:
+
+                N a m e                 Size     Length   Align   Combine Class
+
+FLAT . . . . . . . . . . . . . .	GROUP
+_DATA  . . . . . . . . . . . . .	32 Bit	 00000000 Para	  Public  'DATA'	
+_TEXT  . . . . . . . . . . . . .	32 Bit	 00000021 Para	  Public  'CODE'	
+
+
+Procedures, parameters, and locals:
+
+                N a m e                 Type     Value    Attr
+
+ExitProcess  . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+main . . . . . . . . . . . . . .	P Near	 00000000 _TEXT	Length= 00000021 Public STDCALL
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+@CodeSize  . . . . . . . . . . .	Number	 00000000h   
+@DataSize  . . . . . . . . . . .	Number	 00000000h   
+@Interface . . . . . . . . . . .	Number	 00000003h   
+@Model . . . . . . . . . . . . .	Number	 00000007h   
+@code  . . . . . . . . . . . . .	Text   	 _TEXT
+@data  . . . . . . . . . . . . .	Text   	 FLAT
+@fardata?  . . . . . . . . . . .	Text   	 FLAT
+@fardata . . . . . . . . . . . .	Text   	 FLAT
+@stack . . . . . . . . . . . . .	Text   	 FLAT
+
+	   0 Warnings
+	   0 Errors
